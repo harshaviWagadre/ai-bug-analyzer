@@ -153,20 +153,6 @@ async def analyze_bug_endpoint(
     return result
 
 
-@router.post(
-    "/submit-bug", response_model=AnalyzeResponse, status_code=status.HTTP_200_OK
-)
-async def submit_bug(
-    title: str = Form(default=""),
-    description: str = Form(default=""),
-    bug_file: UploadFile | None = File(default=None),
-    db: Session = Depends(get_db),
-):
-    return await analyze_bug_endpoint(
-        title=title, description=description, bug_file=bug_file, db=db
-    )
-
-
 @router.get("/bugs", response_model=BugListResponse)
 def list_bugs(db: Session = Depends(get_db)):
     bugs = db.query(Bug).order_by(Bug.created_at.desc()).all()
