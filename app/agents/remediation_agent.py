@@ -1,12 +1,8 @@
-def remediation_agent(root_cause, duplicate_bug):
+def remediation_agent(bug, duplicate_bug):
 
-    if duplicate_bug:
-        best_match = duplicate_bug[0]
-        fix = best_match.get("resolution_summary", "No recommendation available.")
-    else:
-        fix = "No recommendation available."
+    best_match = duplicate_bug[0]
 
     return {
-        "recommended_fix": fix,
-        "reason": root_cause.get("root_cause_hypothesis", "Unknown root cause"),
+        "recommended_fix": best_match["resolution_summary"],
+        "reason": best_match["resolution_summary"],
     }
