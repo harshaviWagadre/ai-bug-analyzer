@@ -1,24 +1,26 @@
 from app.agents.triage_agent import triage_agent
 from app.agents.log_analysis_agent import log_analysis_agent
+from app.agents.root_cause_agent import root_cause_agent
+from app.agents.duplicate_agent import duplicate_detection_agent
+from app.agents.remediation_agent import remediation_agent
 
 
-def analyze_bug_with_agents(bug_description: str, log_text: str = ""):
-    """
-    Runs both agents and combines their outputs.
-    """
+def orchestrate(bug):
 
-    # If no separate log is provided,
-    # analyze the bug description itself.
-    if not log_text:
-        log_text = bug_description
+    triage = triage_agent(bug)
 
-    # Run Triage Agent
-    triage_result = triage_agent(bug_description)
+    log_analysis = log_analysis_agent(bug)
 
-    # Run Log Analysis Agent
-    log_analysis_result = log_analysis_agent(log_text)
+    root_cause = root_cause_agent(bug)
 
-    # Combine both results
-    combined_result = {"triage": triage_result, "log_analysis": log_analysis_result}
+    duplicate_bug = duplicate_detection_agent(bug)
 
-    return combined_result
+    remediation = remediation_agent(bug, duplicate_bug)
+
+    return {
+        "triage": triage,
+        "log_analysis": log_analysis,
+        "root_cause": root_cause,
+        "duplicate_bug": duplicate_bug,
+        "remediation": remediation,
+    }

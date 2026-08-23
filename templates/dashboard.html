@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Bug Analyzer</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f4f4;
+            padding:30px;
+        }
+
+        h1{
+            color:#1f4e79;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            margin-top:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px lightgray;
+        }
+
+        textarea{
+
+            width:100%;
+            height:120px;
+
+        }
+
+        button{
+
+            margin-top:15px;
+
+            padding:10px 20px;
+
+            background:#1f4e79;
+
+            color:white;
+
+            border:none;
+
+            border-radius:5px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>AI Smart Bug Analyzer</h1>
+
+<form action="/analyze" method="post">
+
+<textarea
+name="bug"
+placeholder="Paste bug report here...">{{bug if bug else ""}}</textarea>
+
+<br>
+
+<button>
+
+Analyze Bug
+
+</button>
+
+</form>
+
+{% if triage %}
+
+<div class="card">
+
+<h2>Triage Result</h2>
+
+<pre>{{triage}}</pre>
+
+</div>
+
+<div class="card">
+
+<h2>Log Analysis</h2>
+
+<pre>{{log}}</pre>
+
+</div>
+
+<div class="card">
+
+<h2>Root Cause</h2>
+
+<pre>{{root}}</pre>
+
+</div>
+
+<div class="card">
+
+<h2>Duplicate Bugs</h2>
+
+<pre>{{duplicates}}</pre>
+
+</div>
+
+<div class="card">
+
+<h2>Recommendations</h2>
+
+<pre>{{remediation}}</pre>
+
+</div>
+
+{% endif %}
+
+</body>
+
+</html>

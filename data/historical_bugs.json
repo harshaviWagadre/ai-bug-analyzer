@@ -1,0 +1,42 @@
+[
+  {
+    "bug_id": 1,
+    "title": "Login Crash",
+    "description": "Application crashes during login.",
+    "exception": "NullPointerException",
+    "root_cause": "User object is null after database query.",
+    "resolution": "Add null validation before accessing user properties."
+  },
+  {
+    "bug_id": 2,
+    "title": "Database Timeout",
+    "description": "Payment fails due to database timeout.",
+    "exception": "DatabaseTimeoutException",
+    "root_cause": "Database connection timeout.",
+    "resolution": "Increase timeout and retry failed connections."
+  },
+  {
+    "bug_id": 3,
+    "title": "Invalid Password",
+    "description": "User cannot login with valid credentials.",
+    "exception": "AuthenticationException",
+    "root_cause": "Password hashing mismatch.",
+    "resolution": "Synchronize password hashing algorithm."
+  },
+  {
+    "bug_id": 4,
+    "title": "File Upload Failure",
+    "description": "Image upload fails for files larger than 5MB.",
+    "exception": "FileSizeLimitExceeded",
+    "root_cause": "Upload size restriction.",
+    "resolution": "Increase upload size limit."
+  },
+  {
+    "bug_id": 5,
+    "title": "Email Notification Failure",
+    "description": "Users do not receive verification email.",
+    "exception": "SMTPException",
+    "root_cause": "SMTP server configuration is incorrect.",
+    "resolution": "Update SMTP credentials."
+  }
+ ]
